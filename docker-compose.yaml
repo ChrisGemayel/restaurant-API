@@ -1,0 +1,72 @@
+version: "2"
+
+networks:
+  backend:
+
+services:
+  menu:
+    container_name: menu
+    restart: always
+    build: ./Menu
+    ports:
+      - "6003:6003"
+    networks:
+      - backend
+    links:
+      - mongo
+      
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./Data-DeleteAfterRestart/MongoData/data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - backend
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: restodb
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - ./Data-DeleteAfterRestart/PostgresData/data:/var/lib/postgresql/data
+    networks:
+    - backend
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+
+  order:
+    build: ./Orderer
+    ports:
+      - 6002:6002
+    networks:
+      - backend
+
+  shoppingcart:
+    build: ./ShoppingCart
+    ports:
+    - "6000:6000"
+    networks:
+    - backend
+  redis:
+    image: redis
+    networks:
+    - backend
+
+  user:
+    build: ./User
+    ports:
+      - 6001:6001
+    networks:
+      - backend
