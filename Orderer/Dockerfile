@@ -6,6 +6,8 @@ RUN apt-get install -y pkg-config libcairo2-dev libpango1.0-dev libpng-dev libjp
 
 EXPOSE 6002
 
+EXPOSE 6000
+
 EXPOSE 5432
 
 COPY . ./API

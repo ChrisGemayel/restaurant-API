@@ -52,6 +52,8 @@ services:
       - 6002:6002
     networks:
       - backend
+    links:
+      - shoppingcart
 
   shoppingcart:
     build: ./ShoppingCart

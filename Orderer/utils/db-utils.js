@@ -20,20 +20,20 @@ async function getOrderRepo(){
 }
 
 
-module.exports.registerOrder = async function registerOrder(order){
+module.exports.registerOrder = async function registerOrder(order, shoppingcart){
     try {
         var currentDate = new Date();
         var dateString = currentDate.getTime();
         var totalprice = 0;
 
-        for (let i = 0; i < order.body.items.length; i++){
-            totalprice += order.body.items[i].price; 
+        for (let i = 0; i < shoppingcart.order.length; i++){
+            totalprice += shoppingcart.order[i].price; 
         }
 
         const order1 = {
             userId: order.headers.user,
             date: dateString,
-            items: JSON.stringify(order.body),
+            items: JSON.stringify(shoppingcart.order),
             totalCost: totalprice
         };
 
