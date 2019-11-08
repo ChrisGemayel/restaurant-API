@@ -46,3 +46,13 @@ Shopping Cart API - Redis:
 `POST http://localhost:6000/shoppingCart/checkOut` : returns the array of json objects and deletes it from the memory, note: takes no body and only the header "user" which is the id of the user invoking it
 
 `GET http://localhost:6000/shoppingCart` : returns the shopping cart of the user, the id of the user would be in the header
+
+a few examples:
+
+![alt text](https://cdn.discordapp.com/attachments/440867661136527360/642328380557230080/menugetall.PNG)
+
+![alt text](https://cdn.discordapp.com/attachments/440867661136527360/642328378321666058/menucreate.PNG)
+
+![alt text](https://cdn.discordapp.com/attachments/440867661136527360/642328385254719518/usergetall.PNG)
+
+![alt text](https://cdn.discordapp.com/attachments/440867661136527360/642328386290843648/userregister.PNG)
